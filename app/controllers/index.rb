@@ -1,15 +1,15 @@
 get '/' do
-  @anagrams = params[:anagrams]
-  # Look in app/views/index.erb
+  @anagrams = []
   erb :index
 end
 
-post '/anagrams' do
+
+get "/answer" do
   input = params[:user_input]
-  anagrams = Word.all.map(&:word).select do |word| 
+  @anagrams = Word.all.map(&:word).select do |word| 
     word.downcase.chars.sort.join == input.downcase.chars.sort.join 
   end
-  redirect("/?anagrams=#{anagrams.join(", ")}") 
+  erb :index
 end
 
 

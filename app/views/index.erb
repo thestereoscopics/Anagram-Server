@@ -1,10 +1,13 @@
 <div class="container">
   <h1>Let's make anagrams!</h1>
-  <% if @anagrams %>
-    <p>Here are your anagrams: <%= @anagrams %> </p>
+  <% unless @anagrams.empty? %>
+    <p>Here are your anagrams: <% @anagrams.each do |word| %> 
+    <%= word %>
+    <% end %> 
+    </p>
   <% end %>
 
-  <form action="/anagrams" method="post">
+  <form action="/answer" method="get">
     Gimme a word:
     <br>
     <input type="text" name="user_input">
